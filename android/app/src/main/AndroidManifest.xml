@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.now_eng">
+
    <application
         android:label="now_eng"
         android:name="${applicationName}"
