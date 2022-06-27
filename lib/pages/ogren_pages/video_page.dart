@@ -1,10 +1,12 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:now_eng/widgets/tabbar_widget.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../services/status_services.dart';
-import '../../widgets/ogren_widget.dart';
+import '../../widgets/video_widget.dart';
 
 class VideoPage extends StatefulWidget {
   const VideoPage({Key? key}) : super(key: key);
@@ -22,11 +24,12 @@ class _VideoPageState extends State<VideoPage> {
     builder: (context, snaphot) {
     return !snaphot.hasData
     ? CircularProgressIndicator()
-        : ListView.builder(
+        : PageView.builder(
+      scrollDirection: Axis.vertical,
     itemCount: snaphot.data!.docs.length,
     itemBuilder: (context, index) {
     DocumentSnapshot mypost = snaphot.data!.docs[index];
-    return OgrenWidget(doc:mypost);
+    return TabBarWidget(doc:mypost);
     }
     );});}}
 
