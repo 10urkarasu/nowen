@@ -17,6 +17,10 @@ class StatusService {
     var ref = _firestore.collection("public").snapshots();
     return ref;
   }
+  Stream<QuerySnapshot<Map<String, dynamic>>> controllStatus() {
+    var ref = _firestore.collection(authService.authInfo().toString()).snapshots();
+    return ref;
+  }
 
 
   Future<void> removeStatus(String docId) {

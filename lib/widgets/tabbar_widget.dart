@@ -19,6 +19,7 @@ class _TabBarWidgetState extends State<TabBarWidget> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           bottom: const TabBar(
             tabs: <Widget>[
               Tab(

@@ -1,14 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class TestWidget extends StatefulWidget {
-  const TestWidget({Key? key}) : super(key: key);
-
+  const TestWidget({required this.doc,Key? key}) : super(key: key);
+  final List<QueryDocumentSnapshot> doc;
   @override
   _TestWidgetState createState() => _TestWidgetState();
 }
 
 class _TestWidgetState extends State<TestWidget> {
   final TextEditingController _wordController = TextEditingController();
+   int controller=0;
+   int score=0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,25 +19,28 @@ class _TestWidgetState extends State<TestWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Padding(
-                padding: const EdgeInsets.all(25.0),
+                padding: EdgeInsets.all(25.0),
                 child: CircleAvatar(
                   radius: 150,
                   backgroundColor: Colors.white70,
                   child: Image(
-                    image: AssetImage("lib/assets/canta.png"),
+                    image: NetworkImage(widget.doc![controller]["photo"]),
                     height: 150,
                     width: 150,),
                 ),
               ),
+              Padding(padding:  EdgeInsets.all(5.0),
+                child: Text(score.toString()),
+              ),
               Padding(
-                padding: const EdgeInsets.all(25.0),
+                padding: EdgeInsets.all(25.0),
                 child: TextField(
                     style: TextStyle(
                       color: Colors.white,
                     ),
                     cursorColor: Colors.white,
                     controller: _wordController,
-                    obscureText: true,
+                    obscureText: false,
                     decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.code,
@@ -56,10 +62,41 @@ class _TestWidgetState extends State<TestWidget> {
                           )),
                     )),
               ),
-              Container(
-                height: 200,
-                width: 200,
-              )
+              InkWell(
+                onTap: () {
+                  controller==widget.doc!.length-1
+                      ?
+                      controller
+                      :
+                  setState(() {
+                    _wordController.text==widget.doc![controller]["english"]?
+                    {
+                      score++,
+                      controller++
+                    }
+                        :
+                    controller++;
+                  });
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 5),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white, width: 2),
+                      //color: colorPrimaryShade,
+                      borderRadius: BorderRadius.all(Radius.circular(30))),
+                  child: Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: Center(
+                        child: Text(
+                          "OK",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        )),
+                  ),
+                ),
+              ),
             ],
           ),
     );

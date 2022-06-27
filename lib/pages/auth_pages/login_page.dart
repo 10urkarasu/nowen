@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:now_eng/pages/auth_pages/load_page.dart';
 import 'package:now_eng/pages/auth_pages/register_page.dart';
 import 'package:now_eng/widgets/my_navigate_bar.dart';
 
@@ -107,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                             return Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => MyNavigateBar()));
+                                    builder: (context) => LoadScreen()));
                           });
                         },
                         child: Container(
