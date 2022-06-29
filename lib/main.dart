@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:now_eng/pages/auth_pages/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:now_eng/screens/wrapper.dart';
 import 'widgets/my_navigate_bar.dart';
 
 void main() async {

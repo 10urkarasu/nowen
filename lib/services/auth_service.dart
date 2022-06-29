@@ -20,6 +20,11 @@ class AuthService {
   authInfo() {
     return _auth.currentUser!.uid;
   }
+  authGetInfo() {
+    var list = [_auth.currentUser!.email,_auth.currentUser!.displayName,_auth.currentUser!.phoneNumber,_auth.currentUser!.photoURL];
+
+    return list;
+  }
 
   //kayıt ol fonksiyonu
   Future<User?> createPerson(String name, String email, String password) async {
